@@ -1,0 +1,28 @@
+<!-- createEvent.ejs -->
+
+
+<h2>Create a New Event</h2>
+
+<!-- Event creation form -->
+<form action="/events/create" method="post">
+    <label for="eventName">Event Name:</label>
+    <input type="text" id="eventName" name="eventName" required>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="time">Time:</label>
+    <input type="time" id="time" name="time" required>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4" required></textarea>
+
+    <!-- Add more form fields as needed -->
+
+    <button type="submit">Create Event</button>
+</form>
+
+

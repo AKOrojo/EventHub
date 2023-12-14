@@ -1,0 +1,36 @@
+<!-- dashboard.ejs -->
+
+<!-- Include header and footer as needed -->
+
+
+<h2>Welcome to Your Dashboard, <%= user.username %></h2>
+
+<!-- Display user details -->
+<div>
+    <strong>Username:</strong> <%= user.username %><br>
+    <strong>Email:</strong> <%= user.email %><br>
+    <!-- Add more user details as needed -->
+</div>
+
+<!-- Display user's created events -->
+<h3>Your Created Events</h3>
+<ul>
+    <% if (user.events.length > 0) { %>
+        <% user.events.forEach(event => { %>
+            <li>
+                <strong><%= event.event_name %></strong>
+                <p>Date: <%= event.date %></p>
+                <p>Time: <%= event.time %></p>
+                <!-- Add more event details as needed -->
+                <a href="/events/<%= event.event_id %>">View Details</a>
+            </li>
+        <% }); %>
+    <% } else { %>
+        <p>You haven't created any events yet.</p>
+    <% } %>
+</ul>
+
+<!-- Add more sections as needed, such as upcoming events, notifications, etc. -->
+
+
+

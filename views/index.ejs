@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Include header and footer as needed -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="login">Login</a></li>
+                <li><a href="register">Register</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="eventDetails">Events</a></li>
+            </ul>
+        </nav>
+        <h1>EventHub</h1>
+        <p>Discover and create events in your area.</p>
+    </header>
+
+    <!-- Display a list of events -->
+    <main>
+        <ul>
+            <% events.forEach(event => { %>
+                <li class="card">
+                    <h2><%= event.event_name %></h2>
+                    <p>Date: <%= event.date %></p>
+                    <p>Time: <%= event.time %></p>
+                    <p>Location: <%= event.location %></p>
+                    <!-- Add more event details as needed -->
+                </li>
+            <% }); %>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2022 EventHub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
