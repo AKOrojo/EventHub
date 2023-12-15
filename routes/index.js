@@ -51,6 +51,28 @@ router.get('/register', async (req, res) => {
     }
 });
 
+router.get('/dashboard', async (req, res) => {
+    try {
+        const events = await Event.findAll(); // Assuming you have a findAll method in your Event model
+        res.render('dashboard.ejs', { events });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+router.get('/createEvent', async (req, res) => {
+    try {
+        const events = await Event.findAll(); // Assuming you have a findAll method in your Event model
+        res.render('createEvent.ejs', { events });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+
 // Display the details of a specific event
 router.get('/event/:eventId', async (req, res) => {
     try {

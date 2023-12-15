@@ -1,6 +1,13 @@
 <!-- dashboard.ejs -->
 
-<!-- Include header and footer as needed -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 
 
 <h2>Welcome to Your Dashboard, <%= user.username %></h2>
@@ -30,7 +37,63 @@
     <% } %>
 </ul>
 
-<!-- Add more sections as needed, such as upcoming events, notifications, etc. -->
+<!-- Display user's joined events -->
+<h3>Your Joined Events</h3>
+<ul>
+    <% if (user.joinedEvents.length > 0) { %>
+        <% user.joinedEvents.forEach(event => { %>
+            <li>
+                <strong><%= event.event_name %></strong>
+                <p>Date: <%= event.date %></p>
+                <p>Time: <%= event.time %></p>
+                <!-- Add more event details as needed -->
+                <a href="/events/<%= event.event_id %>">View Details</a>
+            </li>
+        <% }); %>
+    <% } else { %>
+        <p>You haven't joined any events yet.</p>
+    <% } %>
+</ul>
 
+<!-- Display user's upcoming events -->
+<h3>Your Upcoming Events</h3>
+<ul>
+    <% if (user.upcomingEvents.length > 0) { %>
+        <% user.upcomingEvents.forEach(event => { %>
+            <li>
+                <strong><%= event.event_name %></strong>
+                <p>Date: <%= event.date %></p>
+                <p>Time: <%= event.time %></p>
+                <!-- Add more event details as needed -->
+                <a href="/events/<%= event.event_id %>">View Details</a>
+            </li>
+        <% }); %>
+    <% } else { %>
+        <p>You have no upcoming events.</p>
+    <% } %>
+</ul>
 
+<!-- Display user's notifications -->
+<h3>Your Notifications</h3>
+<ul>
+    <% if (user.notifications.length > 0) { %>
+        <% user.notifications.forEach(notification => { %>
+            <li>
+                <%= notification.message %>
+                <p>Event: <%= notification.event_name %></p>
+                <p>Date: <%= notification.date %></p>
+                <p>Time: <%= notification.time %></p>
+                <!-- Add more notification details as needed -->
+                <a href="/events/<%= notification.event_id %>">View Details</a>
+            </li>
+        <% }); %>
+    <% } else { %>
+        <p>You have no notifications.</p>
+    <% } %>
+</ul>
+
+<!-- Include footer as needed -->
+<%- include('partials/footer') %>
+</body>
+</html>
 

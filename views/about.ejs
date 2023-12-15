@@ -3,23 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About EventHub</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <title>EventHub</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <!-- Include header and footer as needed -->
-    <header style="background-image: url('/images/background.jpg');">
-        <nav style="background-color: #333; padding: 1rem;">
-            <ul style="display: flex; justify-content: space-around; align-items: center;">
-                <li><a href="/">Home</a></li>
-                <li><a href="/views/login.ejs">Login</a></li>
-                <li><a href="/views/register.ejs">Register</a></li>
-                <li><a href="/views/about.ejs">About</a></li>
-                <li><a href="/views/eventDetails.ejs">Events</a></li>
-            </ul>
-        </nav>
-        <h1>About EventHub</h1>
-    </header>
+<!-- createEvent.ejs -->
+
+<!-- Include header and footer as needed -->
+<%- include('partials/header') %>
+
 
     <main>
         <p>EventHub is your go-to platform for discovering and managing events in your local area. Whether you're looking to create your own events or explore what others have to offer, we've got you covered.</p>
@@ -36,13 +28,7 @@
         <p>EventHub is committed to providing a user-friendly and enriching experience for event enthusiasts. Join us in revolutionizing the event management landscape!</p>
     </main>
 
-    <footer style="background-color: #333; color: #fff; padding: 1rem;">
-        <p>&copy; 2022 EventHub. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">
-            <a href="https://www.facebook.com/eventhub" style="color: #fff; margin-right: 0.5rem; text-decoration: none;">Facebook</a>
-            <a href="https://www.twitter.com/eventhub" style="color: #fff; margin-right: 0.5rem; text-decoration: none;">Twitter</a>
-            <a href="https://www.instagram.com/eventhub" style="color: #fff; text-decoration: none;">Instagram</a>
-        </p>
-    </footer>
+   <!-- Include footer as needed -->
+<%- include('partials/footer') %>
 </body>
 </html>

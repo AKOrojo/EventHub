@@ -1,28 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 <!-- createEvent.ejs -->
 
-
-<h2>Create a New Event</h2>
+<!-- Include header and footer as needed -->
+<%- include('partials/header') %>
 
 <!-- Event creation form -->
-<form action="/events/create" method="post">
-    <label for="eventName">Event Name:</label>
-    <input type="text" id="eventName" name="eventName" required>
+<div class="form-wrapper">
+    <h2>Create a New Event</h2>
+    <form action="/events/create" method="post" class="event-form">
+        <div class="form-group">
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" required>
+        </div>
 
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date" required>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
 
-    <label for="time">Time:</label>
-    <input type="time" id="time" name="time" required>
+        <div class="form-group">
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+        </div>
 
-    <label for="location">Location:</label>
-    <input type="text" id="location" name="location" required>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+        </div>
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" rows="4" required></textarea>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
 
-    <!-- Add more form fields as needed -->
+        <!-- Add more form fields as needed -->
 
-    <button type="submit">Create Event</button>
-</form>
+        <div class="form-group">
+            <button type="submit" class="btn">Create Event</button>
+        </div>
+    </form>
+</div>
 
+
+<!-- Include footer as needed -->
+<%- include('partials/footer') %>
+</body>
+</html>
 
