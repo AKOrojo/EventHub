@@ -70,7 +70,7 @@ body {
   }
   
   .header-button:hover {
-    background-color: #e55a00;
+    background-color: #04eb2b;
   }
   
    
@@ -200,6 +200,8 @@ footer {
 }
 
 .form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
 .form-group input[type="date"],
 .form-group input[type="time"],
 .form-group textarea {
@@ -226,6 +228,23 @@ footer {
 .btn:hover {
     background-color: #45a049;
 }
+
+#customButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#fileName {
+    margin-left: 10px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
 
 
 @media (max-width: 768px) {

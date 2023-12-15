@@ -1,8 +1,7 @@
-
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
-const Events = sequelize.define('Event', {
+const Event = sequelize.define('Event', {
     event_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -27,8 +26,24 @@ const Events = sequelize.define('Event', {
     description: {
         type: DataTypes.TEXT,
     },
+    image: {
+        type: DataTypes.BLOB,
+        allowNull: true,
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+    },
+    creator_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
 }, {
-    timestamps:false,
+    timestamps: true, 
 });
 
-module.exports = Events;
+module.exports = Event;

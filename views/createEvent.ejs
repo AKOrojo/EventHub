@@ -41,7 +41,12 @@
             <textarea id="description" name="description" rows="4" required></textarea>
         </div>
 
-        <!-- Add more form fields as needed -->
+        <div class="form-group">
+            <label for="eventImage">Event Image:</label>
+            <input type="file" id="eventImage" name="eventImage" accept="image/*" style="display: none;">
+            <button type="button" id="customButton" class="btn">Choose Image</button>
+            <span id="fileName">No file chosen</span>
+        </div>
 
         <div class="form-group">
             <button type="submit" class="btn">Create Event</button>
@@ -49,6 +54,16 @@
     </form>
 </div>
 
+<script>
+    document.getElementById('customButton').addEventListener('click', function() {
+        document.getElementById('eventImage').click();
+    });
+
+    document.getElementById('eventImage').addEventListener('change', function() {
+        var fileName = document.getElementById('eventImage').files[0].name;
+        document.getElementById('fileName').textContent = fileName;
+    });
+</script>
 
 <!-- Include footer as needed -->
 <%- include('partials/footer') %>
