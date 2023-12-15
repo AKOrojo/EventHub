@@ -13,20 +13,30 @@
     <!-- Include header and footer as needed -->
     <%- include('partials/header') %>
 
-<h2>Event Details</h2>
+<h1>All Event Details</h1>
 
 <!-- Display detailed information about the event -->
-<div>
-    <strong>Event Name:</strong> <%= events.event_Name %><br>
-    <strong>Date:</strong> <%= events.date %><br>
-    <strong>Time:</strong> <%= events.time %><br>
-    <strong>Location:</strong> <%= events.location %><br>
-    <strong>Description:</strong> <%= events.description %><br>
-    <!-- Add more event details as needed -->
-</div>
-
-<!-- Add a button or link to go back to the events list -->
-<a href="/">Back to Events</a>
+<main>
+    <div class="events-container">
+        <% for(let i = 0; i < events.length && i < 6; i++) { 
+            let event = events[i]; %>
+            <div class="event-card">
+                
+                <% if(event.image) { %>
+                    <img src="<%= event.image %>" alt="<%= event.eventName %>">
+                <% } else { %>
+                    <img src="\images\default-event.png" alt="Default Image">
+                <% } %>
+                <div class="event-info">
+                    <h3><%= event.eventName %></h3>
+                    <p>Date: <%= event.date %></p>
+                    <p>Time: <%= event.time %></p>
+                    <p>Location: <%= event.location %></p>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</main>
 
 <!-- Include footer as needed -->
 <%- include('partials/footer') %>

@@ -4,16 +4,35 @@ const router = express.Router();
 const Event = require('../models/event'); // Adjust the path based on your project structure
 const UserModel = require('../models/user'); // Import User model with a distinct name
 
-// Display a list of events on the home page
+// Display Top 6 events on the home page
 router.get('/', async (req, res) => {
     try {
-        const events = await Event.findAll(); // Assuming you have a findAll method in your Event model
-        res.render('index', { events });
+        const events = await Event.findAll(); 
+
+        const currentDateTime = new Date();
+        const upcomingEvents = events
+        .map(event => {
+            const eventDateTime = new Date(event.date);
+
+            const [hours, minutes] = event.time.split(':').map(Number);
+
+            eventDateTime.setHours(hours, minutes);
+
+            return { ...event, dateTime: eventDateTime };
+        })
+        .filter(event => event.dateTime >= currentDateTime)
+        .sort((a, b) => a.dateTime - b.dateTime)
+        .slice(0, 6);
+        console.log(upcomingEvents[0]); 
+
+
+    res.render('index', { upcomingEvents: upcomingEvents });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 router.get('/about', async (req, res) => {
     try {
         const events = await Event.findAll(); // Assuming you have a findAll method in your Event model

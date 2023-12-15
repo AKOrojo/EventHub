@@ -245,6 +245,13 @@ footer {
     vertical-align: middle;
 }
 
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 
 
 @media (max-width: 768px) {
