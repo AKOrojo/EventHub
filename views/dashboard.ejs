@@ -27,7 +27,7 @@
 <!-- Display user's created events -->
 <h3>Your Created Events</h3>
 <ul>
-    <% if (user.events.length > 0) { %>
+    <% if (user.createdEventCount > 0) { %>
         <% user.events.forEach(event => { %>
             <li>
                 <strong><%= event.event_name %></strong>
@@ -45,7 +45,7 @@
 <!-- Display user's joined events -->
 <h3>Your Joined Events</h3>
 <ul>
-    <% if (user.joinedEvents.length > 0) { %>
+    <% if (user.joinedEventCount > 0) { %>
         <% user.joinedEvents.forEach(event => { %>
             <li>
                 <strong><%= event.event_name %></strong>
@@ -57,43 +57,6 @@
         <% }); %>
     <% } else { %>
         <p>You haven't joined any events yet.</p>
-    <% } %>
-</ul>
-
-<!-- Display user's upcoming events -->
-<h3>Your Upcoming Events</h3>
-<ul>
-    <% if (user.upcomingEvents.length > 0) { %>
-        <% user.upcomingEvents.forEach(event => { %>
-            <li>
-                <strong><%= event.event_name %></strong>
-                <p>Date: <%= event.date %></p>
-                <p>Time: <%= event.time %></p>
-                <!-- Add more event details as needed -->
-                <a href="/events/<%= event.event_id %>">View Details</a>
-            </li>
-        <% }); %>
-    <% } else { %>
-        <p>You have no upcoming events.</p>
-    <% } %>
-</ul>
-
-<!-- Display user's notifications -->
-<h3>Your Notifications</h3>
-<ul>
-    <% if (user.notifications.length > 0) { %>
-        <% user.notifications.forEach(notification => { %>
-            <li>
-                <%= notification.message %>
-                <p>Event: <%= notification.event_name %></p>
-                <p>Date: <%= notification.date %></p>
-                <p>Time: <%= notification.time %></p>
-                <!-- Add more notification details as needed -->
-                <a href="/events/<%= notification.event_id %>">View Details</a>
-            </li>
-        <% }); %>
-    <% } else { %>
-        <p>You have no notifications.</p>
     <% } %>
 </ul>
 

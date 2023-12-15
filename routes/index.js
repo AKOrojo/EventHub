@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/event'); // Adjust the path based on your project structure
+const UserModel = require('../models/user'); // Import User model with a distinct name
 
 // Display a list of events on the home page
 router.get('/', async (req, res) => {
@@ -51,15 +52,6 @@ router.get('/register', async (req, res) => {
     }
 });
 
-router.get('/dashboard', async (req, res) => {
-    try {
-        const events = await Event.findAll(); // Assuming you have a findAll method in your Event model
-        res.render('dashboard.ejs', { events });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
-});
 
 router.get('/createEvent', async (req, res) => {
     try {
@@ -71,25 +63,26 @@ router.get('/createEvent', async (req, res) => {
     }
 });
 
-
-
-// Display the details of a specific event
-router.get('/event/:eventId', async (req, res) => {
+router.get('/dashboard', async (req, res) => {
     try {
-        const eventId = req.params.eventId;
-        const event = await Event.findByPk(eventId); // Assuming you have a findByPk method in your Event model
+        // Logging: Display the session userId for debugging
+        console.log('Session User ID:', req.session.userId);
 
-        if (!event) {
-            return res.status(404).send('Event not found');
+        // Check User Object Initialization
+        const user = await UserModel.findByPk(req.session.userId);
+        if (!user) {
+            console.log('User not found, redirecting to login.');
+            return res.redirect('/login');
         }
 
-        res.render('eventDetails', { event });
+        // Proceed with fetching events and rendering the dashboard
+        const events = await Event.findAll();
+        res.render('dashboard', { user, events });
     } catch (error) {
-        console.error(error);
+        // Error Handling: Log the error and send a user-friendly response
+        console.error('Error in /dashboard route:', error);
         res.status(500).send('Internal Server Error');
     }
 });
-
-// Other routes and middleware can be added as needed
 
 module.exports = router;

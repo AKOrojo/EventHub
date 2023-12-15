@@ -7,6 +7,8 @@ const userRouter = require('./routes/user');
 const eventsRouter = require('./routes/events');
 const apiRouter = require('./routes/api');
 const websocketRouter = require('./routes/websocket');
+const session = require('express-session');
+
 
 // Initialize express-ws with the app instance
 expressWs(app);
@@ -16,6 +18,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session({ secret: 'your_secret', resave: false, saveUninitialized: true }));
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
@@ -43,5 +46,5 @@ sequelize.sync().then(() => {
         });
     });
 
-    // ... (any other server logic or cleanup)
+    
 });

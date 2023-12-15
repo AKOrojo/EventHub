@@ -2,30 +2,31 @@
 
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user'); // Adjust the path as needed
+const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 // Display the login form
 router.get('/login', (req, res) => {
-    res.render('login'); // Assuming you have a 'login.ejs' file in the 'views' directory
+    res.render('login');
 });
 
 // Handle user login
 router.post('/login', async (req, res) => {
     try {
-        // Extract login credentials from the request body
         const { username, password } = req.body;
 
-        // Implement user authentication logic
-        // Check username and password against the database
+        // Find user by username
+        const user = await User.findOne({ where: { username } });
+        if (!user) {
+            return res.redirect('/user/login');
+        }
 
-        // For example:
-        const user = await User.findOne({ where: { username, password } });
-
-        if (user) {
-            // User authenticated, redirect to a protected page
+        // Compare password
+        const isValid = await bcrypt.compare(password, user.password);
+        if (isValid) {
+            req.session.userId = user.id;
             res.redirect('/dashboard');
         } else {
-            // Authentication failed, redirect back to the login page
             res.redirect('/user/login');
         }
     } catch (error) {
@@ -33,5 +34,39 @@ router.post('/login', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+// Display the registration form
+router.get('/register', (req, res) => {
+    res.render('register');
+});
+
+// Handle user registration
+router.post('/register', async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+
+        // Check if user exists
+        const existingUser = await User.findOne({ where: { username } });
+        if (existingUser) {
+            return res.redirect('/user/register');
+        }
+
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create new user
+        const newUser = await User.create({ username, email, password: hashedPassword });
+
+
+        // Set session and redirect
+        req.session.userId = newUser.id;
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
 
 module.exports = router;
