@@ -1,43 +1,89 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+    font-family: 'Arial', sans-serif;
+    background-color: #fafafa; 
     margin: 0;
     padding: 0;
-   }
-   
-   header {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-   }
-   
-   nav {
+    line-height: 1.6;
+}
+
+  
+  header {
     display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    padding: 0.5rem;
-   }
-   
-   nav a {
-    color: white;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  header .logo {
+    font-size: 1.5rem;
+    color: #33691e;
     text-decoration: none;
+  }
+  
+  header .search-bar {
+    flex-grow: 1;
+    margin: 0 1rem;
+  }
+  
+  header input[type="search"] {
+    width: 100%;
     padding: 0.5rem;
-   }
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin-left: 1rem;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  nav a:hover {
+    background-color: #ebebeb;
+  }
+  
+  /* Button styles */
+  .header-button {
+    background-color: #33691e;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .header-button:hover {
+    background-color: #e55a00;
+  }
+  
    
-   nav a:hover {
-    background-color: #555;
-   }
-   
-   main {
-    padding: 2rem;
-   }
-   
+main {
+    padding: 2.5rem;
+}
+
    .card {
     background-color: white;
     padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
    }
    
    .card img {
@@ -49,27 +95,141 @@ body {
     margin-bottom: 1rem;
    }
    
+   .card:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
    .card p {
     margin-bottom: 2rem;
    }
    
    .btn {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    border-radius: 4px;
-   }
-   
-   .btn:hover {
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover, .btn:focus {
     background-color: #45a049;
-   }
+    outline: none;
+}
+
    
-   footer {
-    background-color: #333;
+footer {
+    background-color: #33691e;
     color: white;
     text-align: center;
     padding: 1rem;
-   }
+}
+
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.event-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-card img {
+    width: 100%;
+    height: auto;
+}
+
+.event-info {
+    padding: 1rem;
+}
+
+.event-info h3 {
+    color: #333;
+    margin: 0;
+}
+
+.event-info p {
+    color: #666;
+    line-height: 1.5;
+}
+
+.event-details span {
+    display: block;
+    margin-top: 0.5rem;
+    color: #888;
+}
+
+.more-info-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.more-info-btn:hover {
+    background-color: #0056b3;
+}
+
+.form-wrapper {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.event-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: vertical; 
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+
+@media (max-width: 768px) {
+    .form-wrapper {
+        padding: 1rem;
+    }
+}

@@ -1,16 +1,28 @@
 <!-- Header content, navigation links, etc. -->
 
+
 <header>
-    <h1>EventHub</h1>
+    <!-- Logo and Home Link -->
+    <a href="/" class="logo">EventHub</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="search" placeholder="Search events">
+    </div>
+
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-                <li><a href="login">Login</a></li>
-                <li><a href="register">Register</a></li>
                 <li><a href="about">About</a></li>
                 <li><a href="eventDetails">Events</a></li>
                 <li><a href="dashboard">Dashboard</a></li>
                 <li><a href="createEvent">Create Event</a></li>
         </ul>
     </nav>
+
+    <!-- Authentication Buttons -->
+    <div>
+        <button class="header-button" onclick="location.href='/login'">Log In</button>
+        <button class="header-button" onclick="location.href='/register'">Sign Up</button>
+    </div>
 </header>

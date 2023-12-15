@@ -7,6 +7,12 @@
     <title>EventHub</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+<body>
+<!-- createEvent.ejs -->
+    
+<!-- Include header and footer as needed -->
+<%- include('partials/header') %>
+
 <!-- Registration form -->
 <form action="/user/register" method="post">
     <label for="username">Username:</label>
@@ -22,3 +28,8 @@
 
     <button type="submit">Register</button>
 </form>
+
+  <!-- Include footer as needed -->
+  <%- include('partials/footer') %>
+</body>
+</html>
