@@ -5,8 +5,8 @@ const router = express.Router();
 const Event = require('../models/event'); // Adjust the path as needed
 
 // Display detailed information about a specific event
-router.get('/:eventId', async (req, res) => {
-    const eventId = req.params.eventId;
+router.get('/:event_id', async (req, res) => {
+    const eventId = req.params.event_id;
 
     try {
         const event = await Event.findByPk(eventId);

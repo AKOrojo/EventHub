@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Event = require('../models/event'); // Adjust the path based on your project structure
 const UserModel = require('../models/user'); // Import User model with a distinct name
+const sequelize = require('../config/db');
 
 // Display Top 6 events on the home page
 router.get('/', async (req, res) => {
@@ -32,6 +33,22 @@ router.get('/', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+router.get('/search', async (req, res) => {
+    try {
+        const results = await sequelize.query(
+            `SELECT * FROM Events WHERE eventName LIKE '%search_criteria%'`,
+           
+        );
+
+        return results;
+    } catch (error) {
+        console.error('Error searching events:', error);
+        throw error;
+    }
+});
+
+
 
 router.get('/about', async (req, res) => {
     try {
@@ -71,7 +88,29 @@ router.get('/register', async (req, res) => {
     }
 });
 
+router.get('/weather', async (req, res) => {
+    const request = require('request');
+          
+    let apiKey = '4cea5216353d6d8dd7b8580ea25df4f7';
+    let city = 'london';
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+                 
+    request(url, function (err, response, body) {
+      if(err){
+        console.log('error:', error);
+      } else {
+        //res.send(body);
+        var weather = JSON.parse(body)
+var wmsg = 'It is '+ weather.main.temp + 
+   ' degrees in '+ weather.name +
+   '! <br> The humidity now is: ' + 
+   weather.main.humidity;
+res.send (wmsg);
 
+      } 
+    });
+
+});
 router.get('/createEvent', async (req, res) => {
     try {
         const events = await Event.findAll(); // Assuming you have a findAll method in your Event model
