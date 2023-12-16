@@ -5,7 +5,7 @@ const sequelize = require('./config/db');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const eventsRouter = require('./routes/events');
-
+const apiRouter = require('./routes/api');
 const websocketRouter = require('./routes/websocket');
 const session = require('express-session');
 
@@ -23,7 +23,7 @@ app.use(session({ secret: 'your_secret', resave: false, saveUninitialized: true 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/events', eventsRouter);
-
+app.use('/api', apiRouter);
 
 // Use WebSocket middleware for the '/websocket' route
 app.use('routes/websocket', (req, res, next) => {
